@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>{{titulo}}</h1>
-    <button @click="atualizarComponente()">Atualizar</button>
+    <!-- <h1>{{titulo}}</h1> -->
+    <!-- <button @click="atualizarComponente()">Atualizar</button> -->
     <!-- <p>Propriedade $style: {{$style}}</p>
     <div :class="$style.teste">
       como o nome da class não está no formato kebab-case podemos 
@@ -14,8 +14,8 @@
     </div> -->
 
     <!-- renderizar dinamicamente os componentes home e publicar vaga -->
-    <button @click="conteudo = 'home'">Home</button>
-    <button @click="conteudo = 'publicar-vaga'">Publicar Vaga</button>
+    <!-- <button @click="conteudo = 'home'">Home</button>
+    <button @click="conteudo = 'publicar-vaga'">Publicar Vaga</button> -->
     <!-- <home></home>
     <publicar-vaga></publicar-vaga> -->
     <keep-alive>
@@ -29,6 +29,12 @@
   import PublicarVaga from '@/components/views/PublicarVaga.vue'
     export default {
       name: 'Conteudo',
+      props:{
+        conteudo:{
+          type: String,
+          required: true
+        }
+      },
       /*
       data(){
         return{
@@ -39,7 +45,6 @@
       data: () => ({
         teste: 'O comonente foi criado',
         titulo:'Componente conteudo',
-        conteudo: 'home'
       }),
       components:{
         Home,
