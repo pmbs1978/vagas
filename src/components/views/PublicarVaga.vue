@@ -108,7 +108,6 @@
           let vagas = JSON.parse(localStorage.getItem('vagas'))
           // primeiro recuperamos a string de local storage e passamos de uma string
           // para objeto
-          console.log(vagas)
 
           if(!vagas) vagas = []
           // se vagas não exestir criamos um array vazio
@@ -119,9 +118,25 @@
             salario: this.salario,
             modalidade: this.modalidade,
             tipo: this.tipo,
-            publicacao: this.dataPublicacao
+            publicacao: this.dataPublicacao,
+            favoritada: false
           })
-          //localStorage.setItem('vagas', JSON.stringify(vagas))
+          if(this.validaFormulario()){
+            localStorage.setItem('vagas', JSON.stringify(vagas))
+            this.emitter.emit('alerta', {
+              tipo: 'sucesso',
+              titulo: `A vaga ${this.titulo} foi adicionada com sucesso`,
+              descricao: 'Prabéns, a vaga foi adicionada e pode ser consultada por milhares de profissionais!'
+            })
+            this.resetCadastroFormulario()
+          } else{
+            this.emitter.emit('alerta', {
+              tipo: 'erro',
+              titulo: `-_- Opssss... Não foi possivel realizar o cadastro!`,
+              descricao: 'Uma ou mais informações não foram preenchidas.'
+            })
+
+          }
           // colocamos o array de objectos no localStorage convertendo para uma string
 
           // let vaga = {
@@ -131,8 +146,6 @@
           //   modalidade: this.modalidade,
           //   tipo: this.tipo,
           // }
-          this.emitter.emit('alerta')
-          this.resetCadastroFormulario()
 
         },
         resetCadastroFormulario(){
@@ -143,6 +156,16 @@
           this.tipo = '',
           this.dataPublicacao = ''
 
+        },
+        validaFormulario(){
+          let valido = true
+          if(this.titulo === '') valido = false
+          if(this.descricao === '') valido = false
+          if(this.salario === '') valido = false
+          if(this.modalidade === '') valido = false
+          if(this.tipo === '') valido = false
+          if(this.dataPublicacao === '') valido = false
+          return valido
         }
       }
     }

@@ -10,7 +10,7 @@
                         <label class="form-check-label">
                             Adicionar aos favoritos
                         </label>
-                        <input class="form-check-input" type="checkbox" v-model="favorita">
+                        <input class="form-check-input" type="checkbox" v-model="favorita" >
                     </div>
                 </div>
             </div>
@@ -34,6 +34,28 @@
         data: () => ({
             favorita: false
         }),
+        mounted() {
+            const vagasFavoritas = JSON.parse(localStorage.getItem('vagasFavoritas'))
+            if(vagasFavoritas){
+                const a = vagasFavoritas.filter(indice => indice.titulo.toLowerCase().includes(this.titulo.toLowerCase()))
+                if (a.length > 0){
+                    this.favorita = true
+                } else{
+                    this.favorita = false
+                }
+            }
+        },
+        beforeUpdate(){
+           const vagasFavoritas = JSON.parse(localStorage.getItem('vagasFavoritas'))
+            if(vagasFavoritas){
+                const a = vagasFavoritas.filter(indice => indice.titulo.toLowerCase().includes(this.titulo.toLowerCase()))
+                if (a.length > 0){
+                    this.favorita = true
+                } else{
+                    this.favorita = false
+                }
+            }
+        },
         watch:{
             // favorita(valorNovo, valorAntigo)
             favorita(valorNovo){

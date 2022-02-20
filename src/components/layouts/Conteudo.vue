@@ -55,6 +55,7 @@
          this.titulo += ' *'
        }
      },
+     /*
      beforeCreate(){
        console.log('Antes de criar')
      },
@@ -79,7 +80,6 @@
      unmounted(){
        console.log('Desmontado/destruido')
      },
-     /*
      errorCaptured(){
        console.log('Erro capturado')
      },

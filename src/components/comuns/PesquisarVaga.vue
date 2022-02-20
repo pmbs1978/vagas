@@ -9,7 +9,7 @@
                 <label for="">
                   Título da vaga
                 </label>
-                <input type="text" class="form-control" placeholder="Pesquise por p+alavras chaves, por exemplo 'PHP', 'Pleno', 'Analista'">
+                <input type="text" class="form-control" v-model="inputWord" placeholder="Pesquise por p+alavras chaves, por exemplo 'PHP', 'Pleno', 'Analista'">
                 <small class="form-text text-muted">
                   Informe palavras que estejam relacionadas com o título da vaga que você procura
                 </small>
@@ -18,7 +18,7 @@
           </div>
           <div class="row">
             <div class="col">
-              <button class="btn btn-outline-dark mt-2">Pesquisar</button>
+              <button class="btn btn-outline-dark mt-2" @click="pesquisarVaga">Pesquisar</button>
             </div>
           </div>
         </div>
@@ -29,6 +29,14 @@
 <script>
 
 export default {
-    name: 'PesquisarVaga'
+    name: 'PesquisarVaga',
+    data: () => ({
+      inputWord: ''
+    }),
+    methods:{
+      pesquisarVaga(){
+        this.emitter.emit('filtarVaga', {titulo: this.inputWord})
+      }
+    }
 }
 </script>

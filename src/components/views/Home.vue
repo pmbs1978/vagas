@@ -95,6 +95,12 @@
        /* não colocar parêntesis na chamada da função porque estamoa a passar por referencia */
        /* não estamos a passar o valor da função */
       },
+      mounted(){
+        this.emitter.on('filtarVaga', (p)=>{
+          const vagas = JSON.parse(localStorage.getItem('vagas'))
+          this.vagas = vagas.filter(indice => indice.titulo.toLowerCase().includes(p.titulo.toLowerCase()))
+        })
+      },
       activated(){
         this.vagas = JSON.parse(localStorage.getItem('vagas'))
       }
