@@ -19,43 +19,43 @@
     <!-- <home></home>
     <publicar-vaga></publicar-vaga> -->
     <keep-alive>
-      <component :is='conteudo' />
+      <component :is="conteudo" />
     </keep-alive>
   </div>
 </template>
 
 <script>
-  import Home from '@/components/views/Home.vue'
-  import PublicarVaga from '@/components/views/PublicarVaga.vue'
-    export default {
-      name: 'Conteudo',
-      props:{
-        conteudo:{
-          type: String,
-          required: true
-        }
-      },
-      /*
+import Home from "@/components/views/Home.vue";
+import PublicarVaga from "@/components/views/PublicarVaga.vue";
+export default {
+  name: "Conteudo",
+  props: {
+    conteudo: {
+      type: String,
+      required: true,
+    },
+  },
+  /*
       data(){
         return{
 
         }
       },
       */
-      data: () => ({
-        teste: 'O comonente foi criado',
-        titulo:'Componente conteudo',
-      }),
-      components:{
-        Home,
-        PublicarVaga
-     },
-     methods:{
-       atualizarComponente(){
-         this.titulo += ' *'
-       }
-     },
-     /*
+  data: () => ({
+    teste: "O comonente foi criado",
+    titulo: "Componente conteudo",
+  }),
+  components: {
+    Home,
+    PublicarVaga,
+  },
+  methods: {
+    atualizarComponente() {
+      this.titulo += " *";
+    },
+  },
+  /*
      beforeCreate(){
        console.log('Antes de criar')
      },
@@ -96,7 +96,7 @@
        console.log('Componete é desativado')
      }
      */
-    }
+};
 </script>
 
 <style module>

@@ -5,11 +5,9 @@
 </template>
 
 <script>
-    export default {
-      name: 'PublicarVagaTeste'
-    }
+export default {
+  name: "PublicarVagaTeste",
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

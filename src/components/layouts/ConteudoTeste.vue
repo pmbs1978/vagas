@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{titulo}}</h1>
+    <h1>{{ titulo }}</h1>
     <button @click="atualizarComponente()">Atualizar</button>
     <!-- <p>Propriedade $style: {{$style}}</p>
     <div :class="$style.teste">
@@ -19,62 +19,64 @@
     <!-- <home></home>
     <publicar-vaga></publicar-vaga> -->
     <keep-alive>
-      <component :is='conteudo' />
+      <component :is="conteudo" />
     </keep-alive>
   </div>
 </template>
 
 <script>
-  import HomeTeste from '@/components/views/HomeTeste.vue'
-  import PublicarVagaTeste from '@/components/views/PublicarVagaTeste.vue'
-    export default {
-      name: 'ConteudoTeste',
-      /*
+import HomeTeste from "@/components/views/HomeTeste.vue";
+import PublicarVagaTeste from "@/components/views/PublicarVagaTeste.vue";
+export default {
+  name: "ConteudoTeste",
+  /*
       data(){
         return{
 
         }
       },
       */
-      data: () => ({
-        teste: 'O comonente foi criado',
-        titulo:'Componente conteudo',
-        conteudo: 'home'
-      }),
-      components:{
-        HomeTeste,
-        PublicarVagaTeste
-     },
-     methods:{
-       atualizarComponente(){
-         this.titulo += ' *'
-       }
-     },
-     beforeCreate(){
-       console.log('Antes de criar')
-     },
-     created(){
-       console.log('Criado')
-     },
-     beforeMount(){
-       console.log('Antes de montar - neste momento podemos solicitar dados ao backEnd para compor a página')
-     },
-     mounted(){
-       console.log('Montado - neste momento a página está montada no DOM real')
-     },
-     beforeUpdate(){
-       console.log('Antes de atualizar')
-     },
-     updated(){
-       console.log('Atualizado')
-     },
-     beforeUnmount(){
-       console.log('Antes de desmontar/destruir')
-     },
-     unmounted(){
-       console.log('Desmontado/destruido')
-     },
-     /*
+  data: () => ({
+    teste: "O comonente foi criado",
+    titulo: "Componente conteudo",
+    conteudo: "home",
+  }),
+  components: {
+    HomeTeste,
+    PublicarVagaTeste,
+  },
+  methods: {
+    atualizarComponente() {
+      this.titulo += " *";
+    },
+  },
+  beforeCreate() {
+    console.log("Antes de criar");
+  },
+  created() {
+    console.log("Criado");
+  },
+  beforeMount() {
+    console.log(
+      "Antes de montar - neste momento podemos solicitar dados ao backEnd para compor a página"
+    );
+  },
+  mounted() {
+    console.log("Montado - neste momento a página está montada no DOM real");
+  },
+  beforeUpdate() {
+    console.log("Antes de atualizar");
+  },
+  updated() {
+    console.log("Atualizado");
+  },
+  beforeUnmount() {
+    console.log("Antes de desmontar/destruir");
+  },
+  unmounted() {
+    console.log("Desmontado/destruido");
+  },
+  /*
      errorCaptured(){
        console.log('Erro capturado')
      },
@@ -91,7 +93,7 @@
        console.log('Componete é desativado')
      }
      */
-    }
+};
 </script>
 
 <style module>
