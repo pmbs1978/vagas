@@ -5,12 +5,22 @@
         <pesquisar-vaga></pesquisar-vaga>
       </div>
     </div>
+    
+    <lista-vagas>
+      <!-- <template v-slot:titulo="slotProps">
+        {{slotProps.dadosTitulo.titulo}}
+        <hr>
+      </template>
 
-    <div class="row mt-5" v-for="(vaga, indice) in vagas" :key="indice">
-      <div class="col">
-        <vaga v-bind="vaga"></vaga>
-      </div>
-    </div>
+      <template v-slot:default="slotProps">
+        {{slotProps}}
+        <hr>
+      </template>
+
+      <template v-slot:rodape="slotProps">
+        {{slotProps.dadosRodape.titulo}}
+      </template> -->
+    </lista-vagas>
 
     <div class="row mt-5">
       <div class="col-4">
@@ -43,8 +53,8 @@
 
 <script>
 import Indicador from "@/components/comuns/Indicador.vue";
+import ListaVagas from "@/components/comuns/ListaVagas.vue";
 import PesquisarVaga from "@/components/comuns/PesquisarVaga.vue";
-import Vaga from "@/components/comuns/Vaga.vue";
 export default {
   name: "Home",
   data: () => ({
@@ -91,7 +101,6 @@ export default {
     //     publicacao: '2021-10-05'
     //   }
     // ]
-    vagas: [],
   }),
   methods: {
     getUsuariosOnline() {
@@ -99,26 +108,15 @@ export default {
     },
   },
   components: {
-    PesquisarVaga,
     Indicador,
-    Vaga,
+    ListaVagas,
+    PesquisarVaga,
   },
   created() {
     setInterval(this.getUsuariosOnline, 1000);
     /* não colocar parêntesis na chamada da função porque estamoa a passar por referencia */
     /* não estamos a passar o valor da função */
-  },
-  mounted() {
-    this.emitter.on("filtarVaga", (p) => {
-      const vagas = JSON.parse(localStorage.getItem("vagas"));
-      this.vagas = vagas.filter((indice) =>
-        indice.titulo.toLowerCase().includes(p.titulo.toLowerCase())
-      );
-    });
-  },
-  activated() {
-    this.vagas = JSON.parse(localStorage.getItem("vagas"));
-  },
+  }
 };
 </script>
 

@@ -38,30 +38,10 @@ export default {
     favorita: false,
   }),
   mounted() {
-    const vagasFavoritas = JSON.parse(localStorage.getItem("vagasFavoritas"));
-    if (vagasFavoritas) {
-      const a = vagasFavoritas.filter((indice) =>
-        indice.titulo.toLowerCase().includes(this.titulo.toLowerCase())
-      );
-      if (a.length > 0) {
-        this.favorita = true;
-      } else {
-        this.favorita = false;
-      }
-    }
+    this.vereficaVagaFavorita();
   },
   beforeUpdate() {
-    const vagasFavoritas = JSON.parse(localStorage.getItem("vagasFavoritas"));
-    if (vagasFavoritas) {
-      const a = vagasFavoritas.filter((indice) =>
-        indice.titulo.toLowerCase().includes(this.titulo.toLowerCase())
-      );
-      if (a.length > 0) {
-        this.favorita = true;
-      } else {
-        this.favorita = false;
-      }
-    }
+    this.vereficaVagaFavorita();
   },
   watch: {
     // favorita(valorNovo, valorAntigo)
@@ -123,7 +103,21 @@ export default {
       required: true,
     },
   },
-  methods: {},
+  methods: {
+    vereficaVagaFavorita(){
+      const vagasFavoritas = JSON.parse(localStorage.getItem("vagasFavoritas"));
+      if (vagasFavoritas) {
+        const a = vagasFavoritas.filter((indice) =>
+          indice.titulo.toLowerCase().includes(this.titulo.toLowerCase())
+        );
+        if (a.length > 0) {
+          this.favorita = true;
+        } else {
+          this.favorita = false;
+        }
+      }
+    }
+  },
   computed: {
     getModalidade() {
       switch (this.modalidade) {

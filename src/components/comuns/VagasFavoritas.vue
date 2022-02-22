@@ -49,26 +49,28 @@ export default {
     vagasFavoritas: [],
   }),
   mounted() {
+    // verificar se vagasFavoritas já existe em localStorage
     const vagaFavorita = JSON.parse(localStorage.getItem("vagasFavoritas"));
+    // se existir atribuir vagaFavorita a vagasFavoritas, se não existir começar com um array vazio
     if (vagaFavorita) {
       this.vagasFavoritas = vagaFavorita;
     } else {
       this.vagasFavoritas = [];
     }
     this.emitter.on("favoritarVaga", (titulo) => {
-      if (vagaFavorita) {
+      if (vagaFavorita) { // verifica se vagaFavorita existe e se contém a vaga
         const a = vagaFavorita.filter((indice) =>
           indice.titulo.toLowerCase().includes(titulo.toLowerCase())
         );
 
-        if (a.length < 1) {
+        if (a.length < 1) { // se não existir a vaga, colocamos no array vagasFavoritas, se já existir não fazemos nada
           this.vagasFavoritas.push({ titulo: titulo });
           localStorage.setItem(
             "vagasFavoritas",
             JSON.stringify(this.vagasFavoritas)
           );
         }
-      } else {
+      } else { // se vagaFavorita não existir colocamos a vaga em vagasFavoritas
         this.vagasFavoritas.push({ titulo: titulo });
         localStorage.setItem(
           "vagasFavoritas",
